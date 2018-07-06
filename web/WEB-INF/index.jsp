@@ -4,6 +4,10 @@
     Author     : Christian Camilo Gámez
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="com.co.cbg.ecjee.model.CategoriaModel"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.co.cbg.ecjee.dao.Categoria"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -221,124 +225,47 @@
 					<div class="left-sidebar">
 						<h2>Categorías</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Ropa deportiva
-										</a>
-									</h4>
-								</div>
-								<div id="sportswear" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Nike </a></li>
-											<li><a href="#">Under Armour </a></li>
-											<li><a href="#">Adidas </a></li>
-											<li><a href="#">Puma</a></li>
-											<li><a href="#">ASICS </a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#mens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Hombres
-										</a>
-									</h4>
-								</div>
-								<div id="mens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Fendi</a></li>
-											<li><a href="#">Guess</a></li>
-											<li><a href="#">Valentino</a></li>
-											<li><a href="#">Dior</a></li>
-											<li><a href="#">Versace</a></li>
-											<li><a href="#">Armani</a></li>
-											<li><a href="#">Prada</a></li>
-											<li><a href="#">Dolce and Gabbana</a></li>
-											<li><a href="#">Chanel</a></li>
-											<li><a href="#">Gucci</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
 							
-							<div class="panel panel-default">
+                                                    <%! ArrayList<Categoria> lista = CategoriaModel.listar(); %>
+                                                    
+                                                    <% for(Categoria categoria: lista){ %>
+                                                        <div class="panel panel-default">
 								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Mujeres
-										</a>
-									</h4>
+                                                                    <h4 class="panel-title">
+                                                                        <a data-toggle="collapse" data-parent="#accordian" href="#<%= categoria.getCodigo() %>">
+                                                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+                                                                            <%= categoria.getNombre() %>
+                                                                        </a>
+                                                                    </h4>
 								</div>
-								<div id="womens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Fendi</a></li>
-											<li><a href="#">Guess</a></li>
-											<li><a href="#">Valentino</a></li>
-											<li><a href="#">Dior</a></li>
-											<li><a href="#">Versace</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Niños</a></h4>
+                                                                <div id="<%= categoria.getCodigo() %>" class="panel-collapse collapse">
+                                                                    <div class="panel-body">
+                                                                        <ul>
+                                                                            <li><a href="#">Nike </a></li>
+                                                                            <li><a href="#">Under Armour </a></li>
+                                                                            <li><a href="#">Adidas </a></li>
+                                                                            <li><a href="#">Puma</a></li>
+                                                                            <li><a href="#">ASICS </a></li>
+                                                                        </ul>
+                                                                    </div>
 								</div>
 							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Moda</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Hogar</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Interiores</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Ropa</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Sacos</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Zapatos</a></h4>
-								</div>
-							</div>
-						</div><!--/category-products-->
-					
-						<div class="brands_products"><!--brands_products-->
-							<h2>Marcas</h2>
-							<div class="brands-name">
-								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right">(56)</span>Nike</a></li>
-									<li><a href="#"> <span class="pull-right">(27)</span>Adidas</a></li>
-									<li><a href="#"> <span class="pull-right">(32)</span>Polo</a></li>
-									<li><a href="#"> <span class="pull-right">(5)</span>Puma</a></li>
-									<li><a href="#"> <span class="pull-right">(9)</span>Boude</a></li>
-									<li><a href="#"> <span class="pull-right">(4)</span>ACB</a></li>
-								</ul>
-							</div>
+                                                    <% } %>                                                   
+                                                        
+                                                        </div><!--/category-products-->
+
+                                                        <div class="brands_products"><!--brands_products-->
+                                                                <h2>Marcas</h2>
+                                                                <div class="brands-name">
+                                                                        <ul class="nav nav-pills nav-stacked">
+                                                                                <li><a href="#"> <span class="pull-right">(56)</span>Nike</a></li>
+                                                                                <li><a href="#"> <span class="pull-right">(27)</span>Adidas</a></li>
+                                                                                <li><a href="#"> <span class="pull-right">(32)</span>Polo</a></li>
+                                                                                <li><a href="#"> <span class="pull-right">(5)</span>Puma</a></li>
+                                                                                <li><a href="#"> <span class="pull-right">(9)</span>Boude</a></li>
+                                                                                <li><a href="#"> <span class="pull-right">(4)</span>ACB</a></li>
+                                                                        </ul>
+                                                                </div>
 						</div><!--/brands_products-->
 
 						<div class="shipping text-center"><!--shipping-->

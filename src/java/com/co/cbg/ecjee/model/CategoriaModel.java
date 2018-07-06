@@ -11,7 +11,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class CategoriaModel {
     
-    public static List<Categoria> listar(){
+    public static ArrayList<Categoria> listar(){
         String sql = "{call sp_listarCategoriaSuperior()}";
                 
         try {
@@ -29,7 +28,7 @@ public class CategoriaModel {
             CallableStatement sentencia = (CallableStatement) c.prepareCall(sql);
             ResultSet resultado = sentencia.executeQuery();
             
-            List<Categoria> lista = new ArrayList<>();
+            ArrayList<Categoria> lista = new ArrayList<>();
             
             while(resultado.next()){
                 Categoria categoria = new Categoria();
