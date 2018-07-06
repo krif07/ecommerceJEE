@@ -45,4 +45,31 @@ public class CategoriaModel {
         
         return null;
     }
+    
+    public static ArrayList<Categoria> listarSubCategorias(int codigoCategoriaSuperior){
+        String sql = "{call sp_listarSubCategoria(?)}";
+                
+        try {
+            Connection c = Conexion.conectar();
+            CallableStatement sentencia = (CallableStatement) c.prepareCall(sql);
+            sentencia.setInt(1, codigoCategoriaSuperior);
+            ResultSet resultado = sentencia.executeQuery();
+            
+            ArrayList<Categoria> lista = new ArrayList<>();
+            
+            while(resultado.next()){
+                Categoria categoria = new Categoria();
+                categoria.setCodigo(resultado.getInt("codigo"));
+                categoria.setNombre(resultado.getString("nombre"));
+                
+                lista.add(categoria);
+            }
+            
+            return lista;
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoriaModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
 }

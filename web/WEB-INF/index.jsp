@@ -226,26 +226,33 @@
 						<h2>Categorías</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
 							
-                                                    <%! ArrayList<Categoria> lista = CategoriaModel.listar(); %>
+                                                    <%! 
+                                                        ArrayList<Categoria> lista = CategoriaModel.listar(); 
+                                                        int codigo = 0;
+                                                    %>
                                                     
-                                                    <% for(Categoria categoria: lista){ %>
+                                                    <% 
+                                                        for(Categoria categoria: lista){ 
+                                                            codigo = categoria.getCodigo();
+                                                    %>
                                                         <div class="panel panel-default">
 								<div class="panel-heading">
                                                                     <h4 class="panel-title">
-                                                                        <a data-toggle="collapse" data-parent="#accordian" href="#<%= categoria.getCodigo() %>">
+                                                                        <a data-toggle="collapse" data-parent="#accordian" href="#<%= codigo %>">
                                                                             <span class="badge pull-right"><i class="fa fa-plus"></i></span>
                                                                             <%= categoria.getNombre() %>
                                                                         </a>
                                                                     </h4>
 								</div>
-                                                                <div id="<%= categoria.getCodigo() %>" class="panel-collapse collapse">
+                                                                <div id="<%= codigo %>" class="panel-collapse collapse">
                                                                     <div class="panel-body">
                                                                         <ul>
-                                                                            <li><a href="#">Nike </a></li>
-                                                                            <li><a href="#">Under Armour </a></li>
-                                                                            <li><a href="#">Adidas </a></li>
-                                                                            <li><a href="#">Puma</a></li>
-                                                                            <li><a href="#">ASICS </a></li>
+                                                                            <% ArrayList<Categoria> listaSubCategoria = CategoriaModel.listarSubCategorias(codigo); %>
+                                                                            <% for(Categoria subCategoria: listaSubCategoria){ %>
+                                                                            
+                                                                                <li><a href="#"><%= subCategoria.getNombre() %></a></li>
+                                                                            
+                                                                            <% } %>
                                                                         </ul>
                                                                     </div>
 								</div>
